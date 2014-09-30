@@ -14,5 +14,5 @@ and Sebastiaan Deetman, CML, Leiden University, The Netherlands
 
 standard abbreviation: DSM
 
-<b> Installation and Tutorial:</b>
+<b> Installation and Tutorial:</b><br>
 http://nbviewer.ipython.org/github/stefanpauliuk/pyDSM/blob/master/Doc/pyDSM_Documentation.ipynb 
