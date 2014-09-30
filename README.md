@@ -13,3 +13,6 @@ with contributions from Georgios Pallas, NTNU,
 and Sebastiaan Deetman, CML, Leiden University, The Netherlands
 
 standard abbreviation: DSM
+
+<b> Installation and Tutorial:</b>
+http://nbviewer.ipython.org/github/stefanpauliuk/pyDSM/blob/master/Doc/pyDSM_Documentation.ipynb 
