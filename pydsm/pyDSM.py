@@ -54,7 +54,7 @@ class DSM(object):
     """     
 
     def __init__(self, t = None, i = None, o = None, s = None, lt = None, s_c = None, o_c = None, name = 'DSM', pdf = None):
-        """ Init function """
+        """ Init function. Assign the input data to the instance of the object."""
         self.t    = t # required
         
         self.i    = i # optional
@@ -77,6 +77,7 @@ class DSM(object):
         self.pdf  = pdf
         
     def return_version_info(self):
+        """Return a brief version statement for this class."""
         return str('Class DSM. Version 0.1. Last change: September 24th, 2014.')        
         
     def dimension_check(self):
