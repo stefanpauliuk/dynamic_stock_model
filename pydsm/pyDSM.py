@@ -11,15 +11,9 @@ standard abbreviation: DSM
 
 """
 
-# import os
 import logging
-# import string
 import numpy as np
 import scipy.stats
-# import pylab
-# import pandas as pd
-# import scipy.sparse.linalg as slinalg
-# import scipy.sparse as sparse
 
 
 class DynamicStockModel(object):
@@ -308,11 +302,3 @@ class DynamicStockModel(object):
         else:
             ExitFlag = 3 # No stock specified
             return None, None, ExitFlag
-
-
-
-#
-#
-#
-#
-#
