@@ -4,7 +4,7 @@ Created on Mon Aug 11 16:19:39 2014
 
 @author: Georgios, Stefan
 """
-from . import DynamicStockModel
+from .. import DynamicStockModel
 import numpy as np
 import unittest
 
@@ -107,7 +107,7 @@ myDSMXY= DynamicStockModel(t = Time_T_FixedLT_XX, i = TestInflow_XX, lt = lifeti
 # Compute full stock model in correct order
 ###############################################################################
 """Unit Test Class"""
-class KnownResults(unittest.TestCase):
+class KnownResultsTestCase(unittest.TestCase):
 
     def test_inflow_driven_model_fixedLifetime(self):
         """Test Inflow Driven Model with Fixed product lifetime."""

@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='pydsm',
     version="0.1",
-    packages=["pydsm"],
+    packages=["pydsm", "pydsm.tests"],
     author="Stefan Pauliak",
     description="Python class for efficient handling of dynamic stock models (DSMs)",
     author_email="stefan.pauliuk@ntnu.no",

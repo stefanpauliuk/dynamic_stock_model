@@ -2,3 +2,4 @@ include *.txt
 include README.md
 include LICENSE
 include pydsm/*.py
+include pydsm/tests/*.py
