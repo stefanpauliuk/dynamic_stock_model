@@ -12,7 +12,6 @@ standard abbreviation: DSM
 """
 
 # import os
-import sys
 import logging
 # import string
 import numpy as np
@@ -22,9 +21,6 @@ import scipy.stats
 # import scipy.sparse.linalg as slinalg
 # import scipy.sparse as sparse
 
-# check for correct version number
-if sys.version_info.major < 3:
-    logging.warn('This package requires Python 3.0 or higher.')
 
 class DynamicStockModel(object):
     """ Class containing a dynamic stock model
