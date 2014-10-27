@@ -65,7 +65,7 @@ class DynamicStockModel(object):
         self.o    = o # optional
         self.o_c  = o_c # optional
 
-        if lt != None:
+        if lt is not None:
             for ThisKey in lt.keys():
                 if len(lt[ThisKey]) == 1: # If we have the same scalar lifetime, stdDev, etc., for all cohorts, expand array to full length of the time vector
                     lt[ThisKey] = np.tile(lt[ThisKey],len(t))
@@ -86,31 +86,31 @@ class DynamicStockModel(object):
         # Compile a little report on the presence and dimensions of the elements in the SUT
         try:
             DimReport  = str('<br><b> Checking dimensions of dynamic stock model ' + self.name + '.')
-            if self.t != None:
+            if self.t is not None:
                 DimReport += str('Time vector is present with ' + str(len(self.t)) + ' years.<br>')
             else:
                 DimReport += str('Time vector is not present.<br>')
-            if self.i != None:
+            if self.i is not None:
                 DimReport += str('Inflow vector is present with ' + str(len(self.i)) + ' years.<br>')
             else:
                 DimReport += str('Inflow is not present.<br>')
-            if self.s != None:
+            if self.s is not None:
                 DimReport += str('Total stock is present with ' + str(len(self.s)) + ' years.<br>')
             else:
                 DimReport += str('Total stock is not present.<br>')
-            if self.s_c != None:
+            if self.s_c is not None:
                 DimReport += str('Stock by cohorts is present with ' + str(len(self.s_c)) + ' years and ' + str(len(self.s_c[0])) + ' cohorts.<br>')
             else:
                 DimReport += str('Stock by cohorts is not present.<br>')
-            if self.o != None:
+            if self.o is not None:
                 DimReport += str('Total outflow is present with ' + str(len(self.o)) + ' years.<br>')
             else:
                 DimReport += str('Total outflow is not present.<br>')
-            if self.o_c != None:
+            if self.o_c is not None:
                 DimReport += str('Outflow by cohorts is present with ' + str(len(self.o_c)) + ' years and ' + str(len(self.o_c[0])) + ' cohorts.<br>')
             else:
                 DimReport += str('Outflow by cohorts is not present.<br>')
-            if self.lt != None:
+            if self.lt is not None:
                 DimReport += str('Lifetime distribution is present with type ' + str(self.lt['Type']) + ' and mean ' + str(self.lt['Mean']) + '.<br>')
             else:
                 DimReport += str('Lifetime distribution is not present.<br>')
@@ -122,7 +122,7 @@ class DynamicStockModel(object):
 
     def compute_stock_change(self):
         """ Determine stock change from time series for stock. Formula: stock_change(t) = stock(t) - stock(t-1)."""
-        if self.s != None:
+        if self.s is not None:
             stock_change = np.zeros(len(self.s))
             stock_change[0] = self.s[0]
             for m in range(1,len(self.s)):
@@ -145,7 +145,7 @@ class DynamicStockModel(object):
 
     def compute_stock_total(self):
         """Determine total stock as row sum of cohort-specific stock."""
-        if self.s != None:
+        if self.s is not None:
             ExitFlag = 2 # Total stock is already defined. Doing nothing.
             return self.s, ExitFlag
         else:
@@ -160,7 +160,7 @@ class DynamicStockModel(object):
 
     def compute_outflow_total(self):
         """Determine total outflow as row sum of cohort-specific outflow."""
-        if self.o != None:
+        if self.o is not None:
             ExitFlag = 2 # Total outflow is already defined. Doing nothing.
             return self.o, ExitFlag
         else:
@@ -180,7 +180,7 @@ class DynamicStockModel(object):
         This is the only method for the inflow-driven model where the lifetime distribution directly enters the computation. All other stock variables are determined by mass balance.
         The shape of the output pdf array is NoofYears * NoofYears
         """
-        if self.pdf == None:
+        if self.pdf is None:
             self.pdf = np.zeros((len(self.t),len(self.t)))
             # Perform specific computations and checks for each lifetime distribution:
 
@@ -221,8 +221,8 @@ class DynamicStockModel(object):
     def compute_s_c_inflow_driven(self):
         """ With given inflow and lifetime distribution, the method builds the stock by cohort.
         """
-        if self.i != None:
-            if self.lt != None:
+        if self.i is not None:
+            if self.lt is not None:
                 self.s_c = np.zeros((len(self.i),len(self.i)))
                 self.compute_outflow_pdf() # construct the pdf of a product of cohort tc leaving the stock in year t
                 for m in range(0,len(self.i)): # cohort index
@@ -240,7 +240,7 @@ class DynamicStockModel(object):
 
     def compute_o_c_from_s_c(self):
         """Compute outflow by cohort from stock by cohort."""
-        if self.s_c != None:
+        if self.s_c is not None:
             if self.o_c == None:
                 self.o_c = np.zeros(self.s_c.shape)
                 for m in range(0,len(self.s_c)): # for all cohorts
@@ -288,8 +288,8 @@ class DynamicStockModel(object):
     def compute_stock_driven_model(self):
         """ With given total stock and lifetime distribution, the method builds the stock by cohort and the inflow.
         The extra parameter InitialStock is a vector that contains the age structure of the stock at time t0, and it covers as many historic cohorts as there are elements in it."""
-        if self.s != None:
-            if self.lt != None:
+        if self.s is not None:
+            if self.lt is not None:
                 self.s_c = np.zeros((len(self.t),len(self.t)))
                 self.o_c = np.zeros((len(self.t),len(self.t)))
                 self.i   = np.zeros(len(self.t))
