@@ -9,12 +9,18 @@ Sebastiaan Deetman, CML Leiden, The Netherlands
 
 standard abbreviation: DSM
 
+Repository for this class, documentation, and tutorials: https://github.com/stefanpauliuk/pyDSM
+
 """
 
+import sys
 import logging
 import numpy as np
 import scipy.stats
 
+# check for correct version number of Python
+if sys.version_info.major < 3:
+    logging.warning('This package requires Python 3.0 or higher.')
 
 class DynamicStockModel(object):
 

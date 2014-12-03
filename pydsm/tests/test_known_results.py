@@ -2,9 +2,9 @@
 """
 Created on Mon Aug 11 16:19:39 2014
 
-@author: Georgios, Stefan
+@author: Georgios Pallas, Stefan Pauliuk, NTNU Trondheim, Norway
 """
-from .. import DynamicStockModel
+from .. import DynamicStockModel # remove and import the class manually if this unit test is run as standalone script
 import numpy as np
 import unittest
 
