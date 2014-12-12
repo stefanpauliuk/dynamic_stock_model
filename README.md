@@ -15,8 +15,9 @@ Sebastiaan Deetman, CML, Leiden University, The Netherlands<br>
 Chris Mutel, PSI, Villingen, CH<br>
 
 
-<b> Installation:</b><br><br>
-<b>a) As package:</b> <br>
+<b> Below, a quick installation guide and a link to the tutorial are provided:</b><br><br>
+
+<b>a) Installation as package:</b> <br>
 Pull package via git pull or download as .zip file and unpack. Choose a convenient location (Here: 'C:\MyPythonPackages\'). Then open a console, change to the directory ../pyDSM-master/, and install the package from the command line: <br>
 > python setup.py install 
 
@@ -38,7 +39,7 @@ Or, to run a specific test
 > unittest.main(pydsm.tests.test_known_results, verbosity=2)
 
 <br>
-<b>b) Manually, by modifying the python path</b><br>
+<b>b) Manual installation, by modifying the python path</b><br>
 Pull package via git pull or download as .zip file and unpack. Choose a convenient location (Here: 'C:\MyPythonPackages\'). Then include in your code the following lines <br>
 > import sys 
 
