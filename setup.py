@@ -7,7 +7,7 @@ setup(
     author="Stefan Pauliak",
     description="Python class for efficient handling of dynamic stock models (DSMs)",
     author_email="stefan.pauliuk@ntnu.no",
-    license=open('LICENSE').read(),
+    license=open('LICENSE.txt').read(),
     install_requires=["numpy", "scipy"],
     long_description=open('README.md').read(),
     url="https://github.com/stefanpauliuk/pyDSM",
