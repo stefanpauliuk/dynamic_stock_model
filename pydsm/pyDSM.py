@@ -1,13 +1,20 @@
 # -*- coding: utf-8 -*-
 """
-Classes for efficient handling of dynamic stock models (DSMs)
+Class DynamicStockModel, DSM. Version 1.0. 
+Last change: May 9th, 2015. 
+Check https://github.com/stefanpauliuk/pyDSM for latest version.
+
+Methods for efficient handling of dynamic stock models (DSMs)
 
 Created on Mon Jun 30 17:21:28 2014
 
-@author: Stefan Pauliuk and Georgios Pallas, NTNU Trondheim, Norway
-Sebastiaan Deetman, CML Leiden, The Netherlands
+@author: Stefan Pauliuk, NTNU Trondheim, Norway
 
 standard abbreviation: DSM
+
+dependencies:
+    numpy
+    scipy
 
 Repository for this class, documentation, and tutorials: https://github.com/stefanpauliuk/pyDSM
 
@@ -28,22 +35,22 @@ class DynamicStockModel(object):
 
     Attributes
     ----------
-    t : Time series of years or other time intervals
-    i : Time series of inflow to stock
+    t : Series of years or other time intervals
+    i : Discrete time series of inflow to stock
 
-    o : Time series of outflow from stock
-    o_c :Time series of outflow from stock, by cohort
+    o : Discrete time series of outflow from stock
+    o_c :Discrete time series of outflow from stock, by cohort
 
-    s_c : dynamic stock (year by cohort)
-    s : dynamic stock, total
+    s_c : dynamic stock model (stock broken down by year and age- cohort)
+    s : Discrete time series for stock, total
 
     lt : lifetime distribution: dictionary
 
-    pdf: probability density distribution of outflow
+    pdf: probability density function, distribution of outflow from a specific age-cohort
 
 
     name : string, optional
-        Name of the DSM, default is 'DSM'
+        Name of the dynamic stock model, default is 'DSM'
     """
 
     """
@@ -52,7 +59,7 @@ class DynamicStockModel(object):
 
     def __init__(self, t=None, i=None, o=None, s=None, lt=None, s_c=None, o_c=None, name='DSM', pdf=None):
         """ Init function. Assign the input data to the instance of the object."""
-        self.t = t  # required
+        self.t = t  # optional
 
         self.i = i  # optional
 
@@ -65,18 +72,20 @@ class DynamicStockModel(object):
         if lt is not None:
             for ThisKey in lt.keys():
                 # If we have the same scalar lifetime, stdDev, etc., for all cohorts,
-                # expand array to full length of the time vector
+                # replicate this value to full length of the time vector
                 if len(lt[ThisKey]) == 1:
                     lt[ThisKey] = np.tile(lt[ThisKey], len(t))
 
         self.lt = lt  # optional
         self.name = name  # optional
 
-        self.pdf = pdf
+        self.pdf = pdf # optional
 
     def return_version_info(self):
         """Return a brief version statement for this class."""
-        return str('Class DSM. Version 0.1. Last change: September 24th, 2014.')
+        return str('Class DynamicStockModel, DSM. Version 1.0. Last change: May 9th, 2015. Check https://github.com/stefanpauliuk/pyDSM for latest version.')
+
+    """ Part 1: Checks and balances: """
 
     def dimension_check(self):
         """ This method checks which variables are present and checks whether data types and dimensions match
@@ -117,10 +126,10 @@ class DynamicStockModel(object):
                                  str(self.lt['Type']) + ' and mean ' + str(self.lt['Mean']) + '.<br>')
             else:
                 DimReport += str('Lifetime distribution is not present.<br>')
-            ExitFlag = 1
+            ExitFlag = 1 # Description of DSM was compiled successfully.
             return DimReport, ExitFlag
         except:
-            ExitFlag = 0
+            ExitFlag = 0 # Unable to compile description of DSM.
             return str('<br><b> Checking dimensions of dynamic stock model ' + self.name + ' failed.'), ExitFlag
 
     def compute_stock_change(self):
@@ -175,7 +184,7 @@ class DynamicStockModel(object):
                 ExitFlag = 3  # Could not determine row sum of o_c.
                 return None, ExitFlag
 
-    """ Lifetime model. """
+    """ Part 2: Lifetime model. """
 
     def compute_outflow_pdf(self):
         """
@@ -198,13 +207,15 @@ class DynamicStockModel(object):
                 for m in range(0, len(self.t)):  # cohort index
                     # year index, year larger or equal than cohort
                     for n in range(m + 1, len(self.t)):
-                        self.pdf[n, m] = scipy.stats.norm(self.lt['Mean'][m], self.lt['StdDev'][m]).pdf(
-                            n - m)  # Call scipy's Norm function with Mean, StdDev, and Age
+                        self.pdf[n, m] = scipy.stats.norm(self.lt['Mean'][m], self.lt['StdDev'][m]).pdf(n - m)  # Call scipy's Norm function with Mean, StdDev, and Age
                 ExitFlag = 1
 
-#            if self.lt['Type'] == 'Weibull':
-# ....
-#                ExitFlag = 1
+            if self.lt['Type'] == 'Weibull': # Equivalent to the Frechet distribution
+                for m in range(0, len(self.t)):  # cohort index
+                    # year index, year larger or equal than cohort
+                    for n in range(m + 1, len(self.t)):
+                        self.pdf[n, m] = scipy.stats.weibull_min(self.lt['Shape'][m], 0, self.lt['Scale'][m]).cdf(n -m) - scipy.stats.weibull_min(self.lt['Shape'][m], 0, self.lt['Scale'][m]).cdf(n -m -1) # Call scipy's Weibull_min function with Shape, offset (0), Scale, and Age
+                ExitFlag = 1
 
             return self.pdf, ExitFlag
         else:
@@ -212,7 +223,7 @@ class DynamicStockModel(object):
             return self.pdf, ExitFlag
 
     """
-    Inflow driven model
+    Part 3: Inflow driven model
     Given: inflow, lifetime dist.
     Default order of methods:
     1) determine stock by cohort
@@ -284,7 +295,7 @@ class DynamicStockModel(object):
             return None, ExitFlag
 
     """
-    Stock driven model
+    Part 4: Stock driven model
     Given: total stock, lifetime dist.
     Default order of methods:
     1) determine inflow, outflow by cohort, and stock by cohort

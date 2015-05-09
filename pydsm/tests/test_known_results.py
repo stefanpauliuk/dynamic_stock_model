@@ -89,6 +89,42 @@ Outflow_TC_NormLT = np.array([[0, 0,  0,  0,  0,  0,  0,  0,  0,  0],
 StockChange_T_NormLT = np.array([1, 1.992402676, 2.948811374, 3.795880023,
                                  4.429983334, 4.798125126, 4.95330158, 4.999137984, 5.008980411, 5.011225514])
 
+"""My Output for Weibull-distributed lifetime"""
+
+Stock_TC_WeibullLT = np.array([[1, 0,  0,  0,  0,  0,  0, 0, 0,  0],  # computed with Excel and taken from there
+                             [0.367879441,	2,	0,	0,	0,	0,	0,	0,	0,	0],
+                             [0.100520187,	0.735758882,	3,	0,	0,	0,	0,	0,	0,	0],
+                            [0.023820879,	0.201040373,	1.103638324,	4,	0,	0,	0,	0,	0,	0],
+                            [0.005102464,	0.047641758,	0.30156056,	1.471517765,5,	0,	0,	0,	0,	0],
+                            [0.001009149,	0.010204929,	0.071462637,	0.402080746,1.839397206,	6,	0,	0,	0,	0],
+                            [0.000186736,	0.002018297,	0.015307393,	0.095283516,	0.502600933,	2.207276647,	7,	0,	0,	0],
+                            [3.26256E-05,	0.000373472,	0.003027446,	0.020409858,	0.119104394,	0.60312112,	2.575156088,	8,	0,	0],
+                            [5.41828E-06,	6.52513E-05,	0.000560208,	0.004036594,	0.025512322,	0.142925273,	0.703641306,	2.943035529,	9,	0],
+                            [8.59762E-07,	1.08366E-05,	9.78769E-05,	0.000746944,	0.005045743,	0.030614786,	0.166746152,	0.804161493,	3.310914971,	10]])
+
+Stock_T_WeibullLT = np.array([1,2.367879441,3.836279069,5.328499576,6.825822547,8.324154666,9.822673522,11.321225,12.8197819,14.31833966])
+
+Outflow_T_WeibullLT = np.array([0,0.632120559,1.531600372,2.507779493,3.502677029,4.50166788,5.501481144,6.501448519,7.5014431,8.501442241])
+
+Outflow_TC_WeibullLT = np.array([[0,	0,	0,	0,	0,	0,	0,	0,	0,	0],
+                                [0.632120559,	0,	0,	0,	0,	0,	0,	0,	0,	0],
+                                [0.267359255,	1.264241118,	0,	0,	0,	0,	0,	0,	0,	0],
+                                [0.076699308,	0.534718509,	1.896361676,	0,	0,	0,	0,	0,	0,	0],
+                                [0.018718414,	0.153398615,	0.802077764,	2.528482235,	0,	0,	0,	0,	0,	0],
+                                [0.004093316,	0.037436829,	0.230097923,	1.069437018,	3.160602794,	0,	0,	0,	0,	0],
+                                [0.000822413,	0.008186632,	0.056155243,	0.306797231,	1.336796273,	3.792723353,	0,	0,	0,	0],
+                                [0.00015411,	0.001644825,	0.012279947,	0.074873658,	0.383496539,	1.604155527,	4.424843912,	0,	0,	0],
+                                [2.72074E-05,	0.000308221,	0.002467238,	0.016373263,	0.093592072,	0.460195846,	1.871514782,	5.056964471,	0,	0],
+                                [4.55852E-06, 5.44147E-05	,     0.000462331	,     0.00328965,   	0.020466579,	0.112310487,	0.536895154,	2.138874037,	5.689085029,	0]])
+
+StockChange_T_WeibullLT = np.array([1,1.367879441,1.468399628,1.492220507,1.497322971,1.49833212,1.498518856,1.498551481,1.4985569,1.498557759])
+
+lifetime_WeibullLT = {'Type': 'Weibull', 'Shape': np.array([1.2]), 'Scale': np.array([1])}
+InitialStock_WB = np.array([0.01, 0.01, 0.08, 0.2,  0.2,  2,  2,  3,  4,  7.50])
+Inflow_WB = np.array([11631.12507,	1845.604871,	2452.059314,	1071.030528,	198.1868742,	391.967459,	83.95995839,	29.8447516,	10.87312731,	7.5])
+
+
+
 """ Test case with fixed lifetime for initial stock"""
 Time_T_FixedLT_X = np.arange(1, 9, 1)
 lifetime_FixedLT_X = {'Type': 'Fixed', 'Mean': np.array([5])}
@@ -117,6 +153,14 @@ myDSM4 = DynamicStockModel(t=Time_T_FixedLT, s=Stock_T_NormLT, lt=lifetime_NormL
 myDSMX = DynamicStockModel(t=Time_T_FixedLT_XX, lt=lifetime_NormLT_X)
 TestInflow_XX = myDSMX.compute_i_from_s(InitialStock=InitialStock_XX)[0]
 myDSMXY = DynamicStockModel(t=Time_T_FixedLT_XX, i=TestInflow_XX, lt=lifetime_NormLT)
+# Compute full stock model in correct order
+
+# For Weibull-distributed Lt
+myDSMWB1 = DynamicStockModel(t=Time_T_FixedLT, i=Inflow_T_FixedLT, lt=lifetime_WeibullLT)
+myDSMWB2 = DynamicStockModel(t=Time_T_FixedLT, s=Stock_T_WeibullLT, lt=lifetime_WeibullLT)
+myDSMWB3 = DynamicStockModel(t=Time_T_FixedLT_XX, lt=lifetime_WeibullLT)
+TestInflow_WB = myDSMWB3.compute_i_from_s(InitialStock=InitialStock_XX)[0]
+myDSMWB4 = DynamicStockModel(t=Time_T_FixedLT_XX, i=TestInflow_WB, lt=lifetime_WeibullLT)
 # Compute full stock model in correct order
 ###############################################################################
 """Unit Test Class"""
@@ -174,8 +218,12 @@ class KnownResultsTestCase(unittest.TestCase):
     def test_inflow_from_stock_normallyDistLifetime(self):
         """Test computation of inflow from stock with normally distributed product lifetime."""
         np.testing.assert_array_almost_equal(TestInflow_XX, Inflow_XX, 9)
-        np.testing.assert_array_almost_equal(
-            myDSMXY.compute_s_c_inflow_driven()[0][-1, :], InitialStock_XX, 9)
+        np.testing.assert_array_almost_equal(myDSMXY.compute_s_c_inflow_driven()[0][-1, :], InitialStock_XX, 9)
+            
+    def test_inflow_from_stock_WeibullDistLifetime(self):
+        """Test computation of inflow from stock with Weibull-distributed product lifetime."""
+        np.testing.assert_array_almost_equal(TestInflow_WB, Inflow_WB, 9)
+        np.testing.assert_array_almost_equal(myDSMWB4.compute_s_c_inflow_driven()[0][-1, :], InitialStock_WB, 9)            
 
 #    if __name__ == '__main__':
 #        unittest.main()
