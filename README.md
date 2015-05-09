@@ -10,10 +10,19 @@ Created on Mon Jun 30 17:21:28 2014
 
 @main author: stefan pauliuk, NTNU Trondheim, Norway <br>
 with contributions from <br>
-Georgios Pallas, NTNU,<br>
-Sebastiaan Deetman, CML, Leiden University, The Netherlands<br>
 Chris Mutel, PSI, Villingen, CH<br>
 
+Dependencies: <br>
+numpy<br>
+scipy<br>
+
+<br>
+<b>Tutorial:</b><br>
+http://nbviewer.ipython.org/github/stefanpauliuk/pyDSM/blob/master/Doc/pyDSM_Documentation.ipynb 
+<b>Documenation of all methods and functions:</b><br>
+https://github.com/stefanpauliuk/pyDSM/tree/master/Doc/pydsm.html
+<br>
+<br>
 
 <b> Below, a quick installation guide and a link to the tutorial are provided:</b><br><br>
 
@@ -47,6 +56,3 @@ Pull package via git pull or download as .zip file and unpack. Choose a convenie
 
 > from pydsm import DynamicStockModel
 
-<br><br>
-<b>Tutorial:</b><br>
-http://nbviewer.ipython.org/github/stefanpauliuk/pyDSM/blob/master/Doc/pyDSM_Documentation.ipynb 

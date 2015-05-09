@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module pydsm.pydsm</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="pydsm.html"><font color="#ffffff">pydsm</font></a>.pydsm</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///C:/anaconda3/lib/site-packages/pydsm-1.0-py3.4.egg/pydsm/pydsm.py">c:\anaconda3\lib\site-packages\pydsm-1.0-py3.4.egg\pydsm\pydsm.py</a></font></td></tr></table>
+    <p><tt>Class&nbsp;<a href="#DynamicStockModel">DynamicStockModel</a>,&nbsp;DSM.&nbsp;Version&nbsp;1.0.&nbsp;<br>
+Last&nbsp;change:&nbsp;May&nbsp;9th,&nbsp;2015.&nbsp;<br>
+Check&nbsp;https://github.com/stefanpauliuk/pyDSM&nbsp;for&nbsp;latest&nbsp;version.<br>
+&nbsp;<br>
+Methods&nbsp;for&nbsp;efficient&nbsp;handling&nbsp;of&nbsp;dynamic&nbsp;stock&nbsp;models&nbsp;(DSMs)<br>
+&nbsp;<br>
+Created&nbsp;on&nbsp;Mon&nbsp;Jun&nbsp;30&nbsp;17:21:28&nbsp;2014<br>
+&nbsp;<br>
+@author:&nbsp;Stefan&nbsp;Pauliuk,&nbsp;NTNU&nbsp;Trondheim,&nbsp;Norway<br>
+&nbsp;<br>
+standard&nbsp;abbreviation:&nbsp;DSM<br>
+&nbsp;<br>
+dependencies:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;numpy<br>
+&nbsp;&nbsp;&nbsp;&nbsp;scipy<br>
+&nbsp;<br>
+Repository&nbsp;for&nbsp;this&nbsp;class,&nbsp;documentation,&nbsp;and&nbsp;tutorials:&nbsp;https://github.com/stefanpauliuk/pyDSM</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="logging.html">logging</a><br>
+</td><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="scipy.html">scipy</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="pydsm.pydsm.html#DynamicStockModel">DynamicStockModel</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DynamicStockModel">class <strong>DynamicStockModel</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Class&nbsp;containing&nbsp;a&nbsp;dynamic&nbsp;stock&nbsp;model<br>
+&nbsp;<br>
+Attributes<br>
+----------<br>
+t&nbsp;:&nbsp;Series&nbsp;of&nbsp;years&nbsp;or&nbsp;other&nbsp;time&nbsp;intervals<br>
+i&nbsp;:&nbsp;Discrete&nbsp;time&nbsp;series&nbsp;of&nbsp;inflow&nbsp;to&nbsp;stock<br>
+&nbsp;<br>
+o&nbsp;:&nbsp;Discrete&nbsp;time&nbsp;series&nbsp;of&nbsp;outflow&nbsp;from&nbsp;stock<br>
+o_c&nbsp;:Discrete&nbsp;time&nbsp;series&nbsp;of&nbsp;outflow&nbsp;from&nbsp;stock,&nbsp;by&nbsp;cohort<br>
+&nbsp;<br>
+s_c&nbsp;:&nbsp;dynamic&nbsp;stock&nbsp;model&nbsp;(stock&nbsp;broken&nbsp;down&nbsp;by&nbsp;year&nbsp;and&nbsp;age-&nbsp;cohort)<br>
+s&nbsp;:&nbsp;Discrete&nbsp;time&nbsp;series&nbsp;for&nbsp;stock,&nbsp;total<br>
+&nbsp;<br>
+lt&nbsp;:&nbsp;lifetime&nbsp;distribution:&nbsp;dictionary<br>
+&nbsp;<br>
+pdf:&nbsp;probability&nbsp;density&nbsp;function,&nbsp;distribution&nbsp;of&nbsp;outflow&nbsp;from&nbsp;a&nbsp;specific&nbsp;age-cohort<br>
+&nbsp;<br>
+&nbsp;<br>
+name&nbsp;:&nbsp;string,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;of&nbsp;the&nbsp;dynamic&nbsp;stock&nbsp;model,&nbsp;default&nbsp;is&nbsp;'DSM'<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="DynamicStockModel-__init__"><strong>__init__</strong></a>(self, t=None, i=None, o=None, s=None, lt=None, s_c=None, o_c=None, name='DSM', pdf=None)</dt><dd><tt>Init&nbsp;function.&nbsp;Assign&nbsp;the&nbsp;input&nbsp;data&nbsp;to&nbsp;the&nbsp;instance&nbsp;of&nbsp;the&nbsp;<a href="builtins.html#object">object</a>.</tt></dd></dl>
+
+<dl><dt><a name="DynamicStockModel-check_stock_balance"><strong>check_stock_balance</strong></a>(self)</dt><dd><tt>Check&nbsp;wether&nbsp;inflow,&nbsp;outflow,&nbsp;and&nbsp;stock&nbsp;are&nbsp;balanced.&nbsp;If&nbsp;possible,&nbsp;the&nbsp;method&nbsp;returns&nbsp;the&nbsp;vector&nbsp;'Balance',&nbsp;where&nbsp;Balance&nbsp;=&nbsp;inflow&nbsp;-&nbsp;outflow&nbsp;-&nbsp;stock_change</tt></dd></dl>
+
+<dl><dt><a name="DynamicStockModel-compute_i_from_s"><strong>compute_i_from_s</strong></a>(self, InitialStock)</dt><dd><tt>Given&nbsp;a&nbsp;stock&nbsp;at&nbsp;t0&nbsp;broken&nbsp;down&nbsp;by&nbsp;different&nbsp;cohorts&nbsp;tx&nbsp;...&nbsp;t0,&nbsp;an&nbsp;"initial&nbsp;stock".&nbsp;This&nbsp;method&nbsp;calculates&nbsp;the&nbsp;original&nbsp;inflow&nbsp;that&nbsp;generated&nbsp;this&nbsp;stock.</tt></dd></dl>
+
+<dl><dt><a name="DynamicStockModel-compute_o_c_from_s_c"><strong>compute_o_c_from_s_c</strong></a>(self)</dt><dd><tt>Compute&nbsp;outflow&nbsp;by&nbsp;cohort&nbsp;from&nbsp;stock&nbsp;by&nbsp;cohort.</tt></dd></dl>
+
+<dl><dt><a name="DynamicStockModel-compute_outflow_pdf"><strong>compute_outflow_pdf</strong></a>(self)</dt><dd><tt>Lifetime&nbsp;model.&nbsp;The&nbsp;method&nbsp;compute&nbsp;outflow_pdf&nbsp;returns&nbsp;an&nbsp;array&nbsp;year-by-cohort&nbsp;of&nbsp;the&nbsp;probability&nbsp;of&nbsp;a&nbsp;item&nbsp;added&nbsp;to&nbsp;stock&nbsp;in&nbsp;year&nbsp;m&nbsp;(aka&nbsp;cohort&nbsp;m)&nbsp;leaves&nbsp;in&nbsp;in&nbsp;year&nbsp;n.&nbsp;This&nbsp;value&nbsp;equals&nbsp;pdf(n,m).<br>
+This&nbsp;is&nbsp;the&nbsp;only&nbsp;method&nbsp;for&nbsp;the&nbsp;inflow-driven&nbsp;model&nbsp;where&nbsp;the&nbsp;lifetime&nbsp;distribution&nbsp;directly&nbsp;enters&nbsp;the&nbsp;computation.&nbsp;All&nbsp;other&nbsp;stock&nbsp;variables&nbsp;are&nbsp;determined&nbsp;by&nbsp;mass&nbsp;balance.<br>
+The&nbsp;shape&nbsp;of&nbsp;the&nbsp;output&nbsp;pdf&nbsp;array&nbsp;is&nbsp;NoofYears&nbsp;*&nbsp;NoofYears</tt></dd></dl>
+
+<dl><dt><a name="DynamicStockModel-compute_outflow_total"><strong>compute_outflow_total</strong></a>(self)</dt><dd><tt>Determine&nbsp;total&nbsp;outflow&nbsp;as&nbsp;row&nbsp;sum&nbsp;of&nbsp;cohort-specific&nbsp;outflow.</tt></dd></dl>
+
+<dl><dt><a name="DynamicStockModel-compute_s_c_inflow_driven"><strong>compute_s_c_inflow_driven</strong></a>(self)</dt><dd><tt>With&nbsp;given&nbsp;inflow&nbsp;and&nbsp;lifetime&nbsp;distribution,&nbsp;the&nbsp;method&nbsp;builds&nbsp;the&nbsp;stock&nbsp;by&nbsp;cohort.</tt></dd></dl>
+
+<dl><dt><a name="DynamicStockModel-compute_stock_change"><strong>compute_stock_change</strong></a>(self)</dt><dd><tt>Determine&nbsp;stock&nbsp;change&nbsp;from&nbsp;time&nbsp;series&nbsp;for&nbsp;stock.&nbsp;Formula:&nbsp;stock_change(t)&nbsp;=&nbsp;stock(t)&nbsp;-&nbsp;stock(t-1).</tt></dd></dl>
+
+<dl><dt><a name="DynamicStockModel-compute_stock_driven_model"><strong>compute_stock_driven_model</strong></a>(self)</dt><dd><tt>With&nbsp;given&nbsp;total&nbsp;stock&nbsp;and&nbsp;lifetime&nbsp;distribution,&nbsp;the&nbsp;method&nbsp;builds&nbsp;the&nbsp;stock&nbsp;by&nbsp;cohort&nbsp;and&nbsp;the&nbsp;inflow.<br>
+The&nbsp;extra&nbsp;parameter&nbsp;InitialStock&nbsp;is&nbsp;a&nbsp;vector&nbsp;that&nbsp;contains&nbsp;the&nbsp;age&nbsp;structure&nbsp;of&nbsp;the&nbsp;stock&nbsp;at&nbsp;time&nbsp;t0,&nbsp;and&nbsp;it&nbsp;covers&nbsp;as&nbsp;many&nbsp;historic&nbsp;cohorts&nbsp;as&nbsp;there&nbsp;are&nbsp;elements&nbsp;in&nbsp;it.</tt></dd></dl>
+
+<dl><dt><a name="DynamicStockModel-compute_stock_total"><strong>compute_stock_total</strong></a>(self)</dt><dd><tt>Determine&nbsp;total&nbsp;stock&nbsp;as&nbsp;row&nbsp;sum&nbsp;of&nbsp;cohort-specific&nbsp;stock.</tt></dd></dl>
+
+<dl><dt><a name="DynamicStockModel-dimension_check"><strong>dimension_check</strong></a>(self)</dt><dd><tt>This&nbsp;method&nbsp;checks&nbsp;which&nbsp;variables&nbsp;are&nbsp;present&nbsp;and&nbsp;checks&nbsp;whether&nbsp;data&nbsp;types&nbsp;and&nbsp;dimensions&nbsp;match</tt></dd></dl>
+
+<dl><dt><a name="DynamicStockModel-return_version_info"><strong>return_version_info</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;brief&nbsp;version&nbsp;statement&nbsp;for&nbsp;this&nbsp;class.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>
