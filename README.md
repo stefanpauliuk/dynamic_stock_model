@@ -20,11 +20,8 @@ scipy<br>
 <b>Tutorial:</b><br>
 http://nbviewer.ipython.org/github/stefanpauliuk/pyDSM/blob/master/Doc/pyDSM_Documentation.ipynb 
 <br><b>Documenation of all methods and functions:</b><br>
- http://htmlpreview.github.com/?https://github.com/stefanpauliuk/pyDSM/tree/master/Doc/pydsm.html
+http://htmlpreview.github.com/?https://github.com/stefanpauliuk/pyDSM/blob/master/Doc/pydsm.html
 
- http://htmlpreview.github.com/?https://github.com/stefanpauliuk/pyDSM/blob/master/Doc/pydsm.html
-
-<br>
 <br>
 
 <b> Below, a quick installation guide and a link to the tutorial are provided:</b><br><br>
