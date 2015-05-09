@@ -19,8 +19,10 @@ scipy<br>
 <br>
 <b>Tutorial:</b><br>
 http://nbviewer.ipython.org/github/stefanpauliuk/pyDSM/blob/master/Doc/pyDSM_Documentation.ipynb 
-<b>Documenation of all methods and functions:</b><br>
-<a target="_blank" href="https://github.com/stefanpauliuk/pyDSM/tree/master/Doc/pydsm.html">https://github.com/stefanpauliuk/pyDSM/tree/master/Doc/pydsm.html</a>
+<br><b>Documenation of all methods and functions:</b><br>
+ http://htmlpreview.github.com/?https://github.com/stefanpauliuk/pyDSM/tree/master/Doc/pydsm.html
+
+ http://htmlpreview.github.com/?https://github.com/stefanpauliuk/pyDSM/blob/master/Doc/pydsm.html
 
 <br>
 <br>
