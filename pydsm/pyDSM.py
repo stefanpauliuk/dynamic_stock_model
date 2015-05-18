@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Class DynamicStockModel, DSM. Version 1.0. 
-Last change: May 9th, 2015. 
+Last change: May 18th, 2015. 
 Check https://github.com/stefanpauliuk/pyDSM for latest version.
 
 Methods for efficient handling of dynamic stock models (DSMs)
@@ -13,8 +13,10 @@ Created on Mon Jun 30 17:21:28 2014
 standard abbreviation: DSM
 
 dependencies:
-    numpy
-    scipy
+    sys (3.4.1)
+    numpy 1.9.0
+    scipy 0.14.0
+    logging 0.5.1.2 
 
 Repository for this class, documentation, and tutorials: https://github.com/stefanpauliuk/pyDSM
 
