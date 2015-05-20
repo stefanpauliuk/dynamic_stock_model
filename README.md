@@ -3,7 +3,7 @@ pyDSM
 
 Python class for efficient handling of dynamic stock models (DSMs)
 
-This project contains a class and a connected unit test for modelling dynamic stocks of materials or products, 
+This project contains a class and a connected unit test for modelling dynamic stocks of materials or products,
 as used in dynamic material flow analysis and industrial ecology.
 
 Created on Mon Jun 30 17:21:28 2014
@@ -30,10 +30,10 @@ http://htmlpreview.github.com/?https://github.com/stefanpauliuk/pyDSM/blob/maste
 
 <b>a) Installation as package:</b> <br>
 Pull package via git pull or download as .zip file and unpack. Choose a convenient location (Here: 'C:\MyPythonPackages\'). Then open a console, change to the directory ../pyDSM-master/, and install the package from the command line: <br>
-> python setup.py install 
+> python setup.py install
 
 This makes the package available to Python. At any other place in a system with the same python installation, pydsm is now ready to be imported simply by <br>
-> import pydsm 
+> import pydsm
 
 This setup also allows us to run the unit test: <br>
 
@@ -52,9 +52,9 @@ Or, to run a specific test
 <br>
 <b>b) Manual installation, by modifying the python path</b><br>
 Pull package via git pull or download as .zip file and unpack. Choose a convenient location (Here: 'C:\MyPythonPackages\'). Then include in your code the following lines <br>
-> import sys 
+> import sys
 
-> sys.path.append('C:\\MyPythonPackages\\pyDSM-master\\pydsm\\') 
+> sys.path.append('C:\\MyPythonPackages\\pyDSM-master\\pydsm\\')
 
 > from pydsm import DynamicStockModel
 
