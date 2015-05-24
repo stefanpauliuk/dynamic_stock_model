@@ -19,9 +19,9 @@ scipy >= 0.14<br>
 
 <br>
 <b>Tutorial:</b><br>
-http://nbviewer.ipython.org/github/stefanpauliuk/pyDSM/blob/master/Doc/pyDSM_Documentation.ipynb 
+http://nbviewer.ipython.org/github/stefanpauliuk/dynamic_stock_model/blob/master/Doc/dynamic_stock_model_Documentation.ipynb 
 <br><b>Documenation of all methods and functions:</b><br>
-http://htmlpreview.github.com/?https://github.com/stefanpauliuk/pyDSM/blob/master/Doc/pydsm.html
+http://htmlpreview.github.com/?https://github.com/stefanpauliuk/dynamic_stock_model/blob/master/Doc/dynamic_stock_model.html
 
 <br>
 
