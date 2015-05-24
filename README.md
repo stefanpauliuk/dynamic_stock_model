@@ -54,7 +54,7 @@ Or, to run a specific test
 > unittest.main(dynamic_stock_model.tests.test_known_results, verbosity=2)
 
 <br>
-<b>b) Manual installation, by modifying the python path</b><br>
+<b>c) Manual installation, by modifying the python path</b><br>
 Pull package via git pull or download as .zip file and unpack. Choose a convenient location (Here: 'C:\MyPythonPackages\'). Then include in your code the following lines <br>
 > import sys
 
