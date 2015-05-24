@@ -1,4 +1,4 @@
 include *.txt
 include README.md
-include pydsm/*.py
-include pydsm/tests/*.py
+include dynamic_stock_model/*.py
+include dynamic_stock_model/tests/*.py

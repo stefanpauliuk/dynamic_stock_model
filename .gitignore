@@ -1,4 +1,4 @@
 *.pyc
 __pycache__
 dist
-pydsm.egg-info
+dynamic_stock_model.egg-info

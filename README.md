@@ -1,7 +1,7 @@
-pyDSM
+dynamic_stock_model
 =====
 
-Python class for efficient handling of dynamic stock models (DSMs)
+Python class for efficient handling of dynamic stock models
 
 This project contains a class and a connected unit test for modelling dynamic stocks of materials or products,
 as used in dynamic material flow analysis and industrial ecology.
@@ -27,33 +27,38 @@ http://htmlpreview.github.com/?https://github.com/stefanpauliuk/pyDSM/blob/maste
 
 <b> Below, a quick installation guide and a link to the tutorial are provided:</b><br><br>
 
-<b>a) Installation as package:</b> <br>
-Pull package via git pull or download as .zip file and unpack. Choose a convenient location (Here: 'C:\MyPythonPackages\'). Then open a console, change to the directory ../pyDSM-master/, and install the package from the command line: <br>
+<b>a) Installation from the web repository:</b> <br>
+This is the easiest way of installing dynamic_stock_model. Github hosts an installation package for dynamic_stock_model, which can be downloaded directly from the command line using pip: <br>
+
+> pip install dynamic_stock_model
+
+<b>b) Installation as package:</b> <br>
+Pull package via git pull or download as .zip file and unpack. Choose a convenient location (Here: 'C:\MyPythonPackages\'). Then open a console, change to the directory ../dynamic_stock_model-master/, and install the package from the command line: <br>
 > python setup.py install
 
-This makes the package available to Python. At any other place in a system with the same python installation, pydsm is now ready to be imported simply by <br>
-> import pydsm
+This makes the package available to Python. At any other place in a system with the same python installation, dynamic_stock_model is now ready to be imported simply by <br>
+> import dynamic_stock_model
 
 This setup also allows us to run the unit test: <br>
 
 > import unittest
 
-> import pydsm
+> import dynamic_stock_model
 
-> import pydsm.tests
+> import dynamic_stock_model.tests
 
-> unittest.main(pydsm.tests, verbosity=2)
+> unittest.main(dynamic_stock_model.tests, verbosity=2)
 
 Or, to run a specific test
 
-> unittest.main(pydsm.tests.test_known_results, verbosity=2)
+> unittest.main(dynamic_stock_model.tests.test_known_results, verbosity=2)
 
 <br>
 <b>b) Manual installation, by modifying the python path</b><br>
 Pull package via git pull or download as .zip file and unpack. Choose a convenient location (Here: 'C:\MyPythonPackages\'). Then include in your code the following lines <br>
 > import sys
 
-> sys.path.append('C:\\MyPythonPackages\\pyDSM-master\\pydsm\\')
+> sys.path.append('C:\\MyPythonPackages\\dynamic_stock_model-master\\dynamic_stock_model\\')
 
-> from pydsm import DynamicStockModel
+> from dynamic_stock_model import DynamicStockModel
 
