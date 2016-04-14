@@ -215,7 +215,23 @@ class DynamicStockModel(object):
                     for n in range(m + 1, len(self.t)):
                         self.pdf[n, m] = scipy.stats.weibull_min(self.lt['Shape'][m], 0, self.lt['Scale'][m]).cdf(n -m) - scipy.stats.weibull_min(self.lt['Shape'][m], 0, self.lt['Scale'][m]).cdf(n -m -1) # Call scipy's Weibull_min function with Shape, offset (0), Scale, and Age
                 ExitFlag = 1
-
+                
+            if self.lt['Type'] == 'Exponential':
+                for m in range(0, len(self.t)):  # cohort index
+                    # year index, year larger or equal than cohort
+                    for n in range(m + 1, len(self.t)):
+                        self.pdf[n, m] = scipy.stats.expon(scale=self.lt['Mean'][m]).pdf(n - m)  # Call scipy's expon function with Mean-lifetime 
+                ExitFlag = 1
+                
+            if self.lt['Type'] == 'Gamma': #
+                for m in range(0, len(self.t)):  # cohort index
+                    # year index, year larger or equal than cohort
+                    for n in range(m + 1, len(self.t)):
+                        self.pdf[n, m] = scipy.stats.gamma(a=self.lt['Shape'][m], loc=0,  scale=self.lt['Scale'][m]).pdf(n - m)  # Call scipy's gamma function with shape, scale, and loc=0
+                ExitFlag = 1
+                
+                
+                
             return self.pdf, ExitFlag
         else:
             ExitFlag = 2  # pdf already exists
