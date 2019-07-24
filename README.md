@@ -6,6 +6,9 @@ Python class for efficient handling of dynamic stock models
 This project contains a class and a connected unit test for modelling dynamic stocks of materials or products,
 as used in dynamic material flow analysis and industrial ecology.
 
+__Note:__ This project is not maintained anymore. The dynamic stock model class is not part of ODYM, the open dynamic material systems model. The new dsm class of ODYM includes a number of lifetime distributions, different dynamic stock models, is more thoroughly tested, and consistently uses the survival function (sf) to model the decay of age-cohorts. Please check here:
+https://github.com/IndEcol/ODYM
+
 Created on Mon Jun 30 17:21:28 2014
 
 @main author: stefan pauliuk, NTNU Trondheim, Norway <br>
